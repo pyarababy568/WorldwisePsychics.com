@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic Insights - Psychic Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #4a154b;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .support-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .support-info h2 {
+            color: #4a154b;
+            margin-bottom: 15px;
+        }
+
+        .email-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .email-link:hover {
+            color: #764ba2;
+        }
+
+        .advisors-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .advisors-section h2 {
+            color: #4a154b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .advisors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .advisor-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+        }
+
+        .advisor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .advisor-card.selected {
+            border-color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scale(1.02);
+        }
+
+        .advisor-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .advisor-specialty {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .selection-display {
+            background: rgba(103, 126, 234, 0.1);
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .selection-text {
+            color: #4a154b;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .services-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .services-info h3 {
+            color: #4a154b;
+            margin-bottom: 15px;
+        }
+
+        .services-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .service-tag {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .advisors-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔮 Mystic Insights</h1>
+            <p class="subtitle">Your Gateway to Spiritual Guidance</p>
+        </header>
+
+        <div class="support-info">
+            <h2>📧 Need Support?</h2>
+            <p>Contact our support team at: <a href="mailto:thepsychicservices@gmail.com" class="email-link">thepsychicservices@gmail.com</a></p>
+            <p>We're here to help with any questions about our services!</p>
+        </div>
+
+        <div class="advisors-section">
+            <h2>✨ Choose Your Spiritual Advisor</h2>
+            
+            <div class="advisors-grid">
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Luna Moonwhisper')">
+                    <div class="advisor-name">Luna Moonwhisper</div>
+                    <div class="advisor-specialty">Tarot & Moon Cycles</div>
+                </div>
+                
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Crystal Starborn')">
+                    <div class="advisor-name">Crystal Starborn</div>
+                    <div class="advisor-specialty">Crystal Healing & Auras</div>
+                </div>
+                
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Sage Dreamwalker')">
+                    <div class="advisor-name">Sage Dreamwalker</div>
+                    <div class="advisor-specialty">Dream Interpretation</div>
+                </div>
+                
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Raven Nightseer')">
+                    <div class="advisor-name">Raven Nightseer</div>
+                    <div class="advisor-specialty">Psychic Readings & Visions</div>
+                </div>
+                
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Mystic Roseheart')">
+                    <div class="advisor-name">Mystic Roseheart</div>
+                    <div class="advisor-specialty">Love & Relationships</div>
+                </div>
+                
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Phoenix Lightbringer')">
+                    <div class="advisor-name">Phoenix Lightbringer</div>
+                    <div class="advisor-specialty">Life Purpose & Career</div>
+                </div>
+                
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Psychic Luqman')">
+                    <div class="advisor-name">Psychic Luqman</div>
+                    <div class="advisor-specialty">Spiritual Guidance & Wisdom</div>
+                </div>
+                
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Psychic Bright')">
+                    <div class="advisor-name">Psychic Bright</div>
+                    <div class="advisor-specialty">Future Insights & Clarity</div>
+                </div>
+                
+                <div class="advisor-card" onclick="selectAdvisor(this, 'Sabrina Psychic')">
+                    <div class="advisor-name">Sabrina Psychic</div>
+                    <div class="advisor-specialty">Intuitive Healing & Energy</div>
+                </div>
+            </div>
+
+            <div class="selection-display">
+                <div class="selection-text" id="selectionText">Please select an advisor above to begin your spiritual journey</div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="contact-btn" id="contactBtn" onclick="contactAdvisor()" disabled>
+                    Contact Selected Advisor
+                </button>
+            </div>
+        </div>
+
+        <div class="services-info">
+            <h3>🌟 Our Services</h3>
+            <div class="services-list">
+                <span class="service-tag">Tarot Readings</span>
+                <span class="service-tag">Psychic Consultations</span>
+                <span class="service-tag">Crystal Healing</span>
+                <span class="service-tag">Dream Analysis</span>
+                <span class="service-tag">Aura Cleansing</span>
+                <span class="service-tag">Love Guidance</span>
+                <span class="service-tag">Life Coaching</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedAdvisor = null;
+
+        function selectAdvisor(cardElement, advisorName) {
+            // Remove selection from all cards
+            const allCards = document.querySelectorAll('.advisor-card');
+            allCards.forEach(card => card.classList.remove('selected'));
+            
+            // Add selection to clicked card
+            cardElement.classList.add('selected');
+            
+            // Update selected advisor
+            selectedAdvisor = advisorName;
+            
+            // Update display text
+            const selectionText = document.getElementById('selectionText');
+            selectionText.innerHTML = `✨ You have selected: <strong>${advisorName}</strong><br>Ready to connect with your spiritual advisor!`;
+            
+            // Enable contact button
+            const contactBtn = document.getElementById('contactBtn');
+            contactBtn.disabled = false;
+        }
+
+        function contactAdvisor() {
+            if (selectedAdvisor) {
+                const subject = encodeURIComponent(`Consultation Request - ${selectedAdvisor}`);
+                const body = encodeURIComponent(`Hello,
+
+I would like to schedule a consultation with ${selectedAdvisor}.
+
+Please provide me with:
+- Available time slots
+- Consultation rates
+- Preferred consultation method (phone/video/chat)
+
+Thank you for your assistance!
+
+Best regards`);
+                
+                const mailtoLink = `mailto:thepsychicservices@gmail.com?subject=${subject}&body=${body}`;
+                window.location.href = mailtoLink;
+            }
+        }
+    </script>
+</body>
+</html>
